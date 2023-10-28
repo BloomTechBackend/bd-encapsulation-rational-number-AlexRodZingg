@@ -3,8 +3,7 @@ package com.amazon.ata.encapsulation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RationalNumberTest {
 
@@ -129,5 +128,20 @@ public class RationalNumberTest {
 
         //THEN
         assertTrue(equal, "1/2 and 2/4 should be equal.");
+    }
+
+    @Test
+    public void constructor_existingRationalNumber_createsCopy() {
+        //GIVEN
+        RationalNumber first = new RationalNumber(2, 4);
+
+        //WHEN
+        RationalNumber second = new RationalNumber(first);
+
+        //THEN
+        assertNotSame(first, second, "The objects should not be the same.");
+        assertEquals(first.getNumerator(), second.getNumerator(), "Numerators should be the same.");
+        assertEquals(first.getDenominator(), second.getDenominator(), "Denominators should be the same.");
+
     }
 }

@@ -53,6 +53,15 @@ public class RationalNumber {
     }
 
     /**
+     * Copy constructor
+     * @param number is the original RationalNumber being copied.
+     */
+    public RationalNumber(RationalNumber number) {
+        this.numerator = number.getNumerator();
+        this.denominator = number.getDenominator();
+    }
+
+    /**
      * Constructs a new rational number with Numerator = numerator, Denominator = denominator.
      * Rational number is reduced to its simplest form.
      *

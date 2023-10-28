@@ -6,8 +6,43 @@ package com.amazon.ata.encapsulation;
  */
 public class RationalNumber {
 
-    public int numerator;
-    public int denominator;
+    private int numerator;
+    private int denominator;
+
+    public int getNumerator() {
+        return numerator;
+    }
+
+    public int getDenominator() {
+        return denominator;
+    }
+
+    /**
+     * Initializes or updates the rational number with the provided numerator and denominator,
+     * ensuring the denominator is not zero and reducing the number to its simplest form.
+     * @param numerator
+     * @param denominator
+     * @throws IllegalArgumentException if the denominator is zero.
+     */
+    private void initialize(int numerator, int denominator) {
+        if (denominator == 0) {
+            throw new IllegalArgumentException("Denominator cannot be 0.");
+        }
+        this.numerator = numerator;
+        this.denominator = denominator;
+
+        reduce();
+    }
+
+    /**
+     * Updates the numerator and denominator of this RationalNumber and reduces the rational number to its simplest form.
+     * @param numerator the numerator you wish to have.
+     * @param denominator the denominator you wish to have.
+     * @throws IllegalArgumentException if the denominator is zero.
+     */
+    public void update(int numerator, int denominator) {
+        initialize(numerator, denominator);
+    }
 
     /**
      * Constructs a new rational number representing 0. Numerator = 0, Denominator = 1.
@@ -19,18 +54,14 @@ public class RationalNumber {
 
     /**
      * Constructs a new rational number with Numerator = numerator, Denominator = denominator.
+     * Rational number is reduced to its simplest form.
      *
      * @param numerator   the rational number's numerator (the one on top)
-     * @param denominator the rational number's denominator (the one on the bottom)
+     * @param denominator the rational number's denominator. Cannot be zero. (the one on the bottom).
+     * @throws IllegalArgumentException if the denominator is zero.
      */
     public RationalNumber(int numerator, int denominator) {
-        if (denominator == 0) {
-            throw new IllegalArgumentException("Denominator cannot be 0.");
-        }
-        this.numerator = numerator;
-        this.denominator = denominator;
-
-        reduce();
+        initialize(numerator, denominator);
     }
 
     /**
